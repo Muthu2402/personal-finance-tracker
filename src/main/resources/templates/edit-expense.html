@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Expense</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: orange;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-size: 30px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 6px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 14px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+        }
+
+        .total-box {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        form {
+            max-width: 500px;
+            margin-top: 20px;
+            margin-left: 500px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #28a745;
+            color: white;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .error {
+            color: red;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+    </style>
+
+</head>
+<body>
+
+<h2>Edit Expense</h2>
+<form th:action="@{/edit/{id}(id=${expense.id})}"
+      th:object="${expense}" method="post">
+
+    <label>Title:</label>
+    <input type="text" th:field="*{title}">
+    <div th:errors="*{title}"></div>
+
+    <br>
+
+    <label>Amount:</label>
+    <input type="number" step="0.01" th:field="*{amount}">
+    <div th:errors="*{amount}"></div>
+
+    <br>
+
+    <label>Category:</label>
+    <input type="text" th:field="*{category}">
+    <div th:errors="*{category}"></div>
+
+    <br>
+
+    <label>Date:</label>
+    <input type="date" th:field="*{date}">
+    <div th:errors="*{date}"></div>
+
+    <br><br>
+
+    <button type="submit">Update</button>
+    <button th:href="@{/}">Cancel</button>
+
+</form>
+
+</body>
+</html>
